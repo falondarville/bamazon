@@ -36,10 +36,12 @@ function start() {
         ]).then(function(answer){
 
             // gather the responses in variables
-            var product = answer.productId;
+            var product = parseInt(answer.productId);
             var quantity = answer.howMany;
             console.log("You want to purchase an item with the product ID " + product + " in the quantity of " + quantity + ".");
             // check if there are enough items in stock
+            // if the product quantity for the product is less than the quantity in database, then deduct that number from the database
+            if("SELECT * FROM products WHERE productId" )
             // if there are not, tell the customer that there is an insufficient quantity
             // if there are, reduce the number from the stock available in the database and print the customer's total price of purchase
     });
