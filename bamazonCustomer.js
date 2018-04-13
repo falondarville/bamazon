@@ -10,42 +10,55 @@ var connection = mysql.createConnection({
     password: "",
     database: "bamazon"
 });
+
 // test connection
 connection.connect(function(error){
     if (error) throw error;
-    console.log("connected to " + connection.threadId);
-    afterConnection();
+    // console.log("connected to " + connection.threadId);
 });
 
 function start() {
 
-    connection.query("SELECT * FROM products", function(error, response) {
-        if (error) throw error;
+    inquirer.prompt([
+    {
+        name: "productId",
+        type: "input",
+        message: "What is the ID for the product you would like to purchase?"
+        // account for IDs that are not in the database
+    },
+    {
+        name: "howMany",
+        type: "input",
+        message: "How many units would you like to purchase?"
+    }
+    ]).then(function(answer){
 
-        inquirer.prompt([
-        {
-            name: "productId",
-            type: "input",
-            message: "What is the ID for the product you would like to purchase?"
-        },
-        {
-            name: "howMany",
-            type: "input",
-            message: "How many units would you like to purchase?"
-        }
-        ]).then(function(answer){
+        // gather the responses in variables
+        var itemId = parseInt(answer.productId);
+        var quantity = answer.howMany;
+        console.log("You want to purchase an item with the product ID " + itemId + " in the quantity of " + quantity + ".");
 
-            // gather the responses in variables
-            var product = parseInt(answer.productId);
-            var quantity = answer.howMany;
-            console.log("You want to purchase an item with the product ID " + product + " in the quantity of " + quantity + ".");
+        var query = "SELECT stock_quantity FROM products WHERE item_id = " + itemId;
+
+        connection.query(query, function(error, response){
             // check if there are enough items in stock
             // if the product quantity for the product is less than the quantity in database, then deduct that number from the database
-            if("SELECT * FROM products WHERE productId" )
             // if there are not, tell the customer that there is an insufficient quantity
             // if there are, reduce the number from the stock available in the database and print the customer's total price of purchase
+            // if(response > quantity) {
+            //     // then modify the data in database
+            // }
+
+            var stockQuantity = response[0].stock_quantity;
+
+            if(stockQuantity > quantity) {
+                // minus the quantity amount in the database and print total of purchase to the customer
+            }
+
+            console.log(stockQuantity);
+        });
+        // afterConnection();
     });
-});
 };
 
 start();
