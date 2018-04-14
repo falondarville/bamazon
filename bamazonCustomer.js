@@ -45,19 +45,23 @@ function start() {
             // if the product quantity for the product is less than the quantity in database, then deduct that number from the database
             // if there are not, tell the customer that there is an insufficient quantity
             // if there are, reduce the number from the stock available in the database and print the customer's total price of purchase
-            // if(response > quantity) {
-            //     // then modify the data in database
-            // }
 
             var stockQuantity = response[0].stock_quantity;
 
             if(stockQuantity > quantity) {
+                var newQuantity = stockQuantity - quantity;
+                var decrease = "UPDATE stock_quantity =" + newQuantity + " WHERE items = " + itemId;
+                console.log("Stock quantity: " + stockQuantity);
+                console.log("Quantity entered: " + quantity);
+                console.log(newQuantity);
                 // minus the quantity amount in the database and print total of purchase to the customer
+                console.log("Great! You have purchased " + quantity);
+            } else {
+                console.log("There are insufficient amounts of the product to cover your order.");
             }
 
-            console.log(stockQuantity);
         });
-        // afterConnection();
+        afterConnection();
     });
 };
 
