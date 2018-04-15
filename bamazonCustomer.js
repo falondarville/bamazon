@@ -3,7 +3,7 @@ var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
     host: "localhost",
-    // homebrew is running my server, no port set = default port 3306
+    // no port set = default port 3306
 
     user: "root",
 
@@ -23,8 +23,7 @@ function start() {
     {
         name: "productId",
         type: "input",
-        message: "What is the ID for the product you would like to purchase?"
-        // account for IDs that are not in the database
+        message: "What is the ID for the product you would like to purchase? Enter a number 1 through 10."
     },
     {
         name: "howMany",
@@ -33,12 +32,19 @@ function start() {
     }
     ]).then(function(answer){
 
-        // gather the responses in variables
         var itemId = parseInt(answer.productId);
+
+        if(itemId < 1 || itemId > 10){
+            console.log("That product ID does not exist.");
+            start();
+            return;
+        };
+
+        // gather the responses in variables
         var quantity = answer.howMany;
         console.log("You want to purchase an item with the product ID " + itemId + " in the quantity of " + quantity + ".");
 
-        var query = "SELECT stock_quantity FROM products WHERE item_id = " + itemId;
+        var query = "SELECT * FROM products WHERE item_id = " + itemId;
 
         connection.query(query, function(error, response){
             // check if there are enough items in stock
@@ -47,15 +53,27 @@ function start() {
             // if there are, reduce the number from the stock available in the database and print the customer's total price of purchase
 
             var stockQuantity = response[0].stock_quantity;
+            var item = response[0].product_name;
+            var price = response[0].price;
+           
+            // console.log(item);
 
             if(stockQuantity > quantity) {
                 var newQuantity = stockQuantity - quantity;
-                var decrease = "UPDATE stock_quantity =" + newQuantity + " WHERE items = " + itemId;
-                console.log("Stock quantity: " + stockQuantity);
-                console.log("Quantity entered: " + quantity);
-                console.log(newQuantity);
+                var decrease = "UPDATE products SET stock_quantity =" + newQuantity + " WHERE item_id = " + itemId;
+
+                connection.query(decrease, function(error, response){
+                    // console.log("This is the decrease connnection query: ")
+                    // console.log(response);
+                    // console.log(error);
+                    var total = price * quantity;
+                    console.log("Great! You have purchased " + quantity + " " + item + ". The cost per unit of " + item + " is " + total + ".");
+                });
+                // console.log("Stock quantity: " + stockQuantity);
+                // console.log("Quantity entered: " + quantity);
+                // console.log(newQuantity);
                 // minus the quantity amount in the database and print total of purchase to the customer
-                console.log("Great! You have purchased " + quantity);
+                
             } else {
                 console.log("There are insufficient amounts of the product to cover your order.");
             }
