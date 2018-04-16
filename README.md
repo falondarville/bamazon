@@ -1,6 +1,6 @@
 ## Command line shop
 
-This is a command line shop that communicates with a MySQL database. Choose the ID of the item that you would like to purchase through the command line prompt and then choose the quantity of the item you would like to purchase. The following is a snapshot of the small table from the database that I am using:
+This is a command line shop that communicates with a MySQL database. Choose the ID of the item that you would like to purchase through the command line prompt and then choose the quantity of the item you would like to purchase. The following is a snapshot of the small table from the database that I created:
 
 ![alt-text](bamazon.png)
 
