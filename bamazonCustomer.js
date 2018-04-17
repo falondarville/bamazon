@@ -66,7 +66,7 @@ function start() {
                     // console.log("This is the decrease connnection query: ")
                     // console.log(response);
                     // console.log(error);
-                    var total = price * quantity;
+                    var total = (price * quantity).toFixed(2);
                     console.log("Great! You have purchased " + quantity + " " + item + ". The cost per unit of this item is " + price + ". Your total for this order of " + item + " is " + total + ".");
                 });
                 // console.log("Stock quantity: " + stockQuantity);
