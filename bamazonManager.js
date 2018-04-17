@@ -97,10 +97,29 @@ function addInventory() {
                 type: "list",
                 message: "Please select the item that you would like to restock.",
                 choices: productsArray  
+            },
+            {
+                name: "addQuantity",
+                type: "input",
+                message: "How much stock would you like to add? Please do not overburden your warehouse, staff, or general operations. Order in quantities of 1000 or below. "
             }
         ]).then(function(answer){
 
-            console.log("ok");
+            if(answer.addQuantity > 1000){
+                console.log("You do not have enough storage in your warehouse nor managerial power to order this amount of stock at this time. Please order in more modest quantities.")
+            };
+
+            var item = answer.addInventory;
+            var amount = answer.addQuantity;
+
+            connection.query("SELECT * from products WHERE product_name = '" + item + "'", function(error, response){
+
+                var currentQuantity = response[0].stock_quantity;
+                var currentTotal = parseInt(currentQuantity) + parseInt(amount);
+
+                connection.query("UPDATE products SET stock_quantity = " + currentTotal + " WHERE product_name = '" + item + "'");
+                        console.log("You've added " + amount + " " + item + " to your inventory. Now you have " + currentTotal + " " + item + " in stock.");
+            });
         })
     });
 }
