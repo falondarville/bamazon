@@ -67,7 +67,7 @@ function start() {
                     // console.log(response);
                     // console.log(error);
                     var total = price * quantity;
-                    console.log("Great! You have purchased " + quantity + " " + item + ". Your total for this order is " + item + " is " + total + ".");
+                    console.log("Great! You have purchased " + quantity + " " + item + ". The cost per unit of this item is " + price + "Your total for this order of " + item + " is " + total + ".");
                 });
                 // console.log("Stock quantity: " + stockQuantity);
                 // console.log("Quantity entered: " + quantity);
