@@ -40,9 +40,9 @@ function start() {
             case "Add to Inventory":
                 addInventory();
                 break;
-            // case: "Add New Product";
-            //     addProduct();
-            //     break;
+            case "Add New Product":
+                addProduct();
+                break;
         };
 
         // console.log(menuOption);
@@ -120,6 +120,44 @@ function addInventory() {
                 connection.query("UPDATE products SET stock_quantity = " + currentTotal + " WHERE product_name = '" + item + "'");
                         console.log("You've added " + amount + " " + item + " to your inventory. Now you have " + currentTotal + " " + item + " in stock.");
             });
+        })
+    });
+}
+
+function addProduct() {
+
+    inquirer.prompt([
+        {
+            name: "newProductName",
+            type: "input",
+            message: "Please enter the name of your new product."
+        },
+        {
+            name: "newProductPrice",
+            type: "input",
+            message: "Please enter the cost per unit of your new product. Format 00.00"
+        },
+        {
+            name: "newProductQuantity",
+            type: "input",
+            message: "Please enter how many of these items you have in stock."
+        },
+        {
+            name: "newProductDepartment",
+            type: "input",
+            message: "Please enter the department to which this item belongs. Eg. Canned Goods."
+        }
+    ]).then(function(answer){
+
+        var product =  answer.newProductName;
+        var price = answer.newProductPrice;
+        var quantity = answer.newProductQuantity;
+        var department = answer.newProductDepartment;
+
+        connection.query("INSERT INTO products(product_name, price, stock_quantity, department_name) VALUES ('" + product + "'," + price + "," + quantity + ",'" + department + "')", function(error, response){
+            if (error) throw error;
+
+            console.log("You've added " + quantity + " " + product + " with the cost of " + price + " per unit to your shop inventory.")
         })
     });
 }
