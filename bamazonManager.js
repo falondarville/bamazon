@@ -37,9 +37,9 @@ function start() {
             case "View Low Inventory":
                 inventory();
                 break;
-            // case: "Add to Inventory";
-            //     addInventory();
-            //     break;
+            case "Add to Inventory":
+                addInventory();
+                break;
             // case: "Add New Product";
             //     addProduct();
             //     break;
@@ -79,9 +79,31 @@ function inventory() {
     })
 }
 
-// function addInventory() {
-//     connection.query()
-// }
+function addInventory() {
+
+    var productsArray = [];
+
+    connection.query("SELECT product_name from products", function(error, response){
+        if (error) throw error;
+
+        response.forEach(function(response){
+            
+            productsArray.push(response.product_name);
+            return productsArray;
+        })
+        inquirer.prompt([
+            {
+                name: "addInventory",
+                type: "list",
+                message: "Please select the item that you would like to restock.",
+                choices: productsArray  
+            }
+        ]).then(function(answer){
+
+            console.log("ok");
+        })
+    });
+}
 
 // prints all items (for testing)
 function afterConnection() {
