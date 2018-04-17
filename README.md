@@ -18,7 +18,9 @@ The following is a view of the customer view of the application. Here, we see th
 
 ![alt-text](bamazon.gif)
 
-This was created during the UC Davis Extension coding bootcamp.
+### Store Manager Usage
+
+
 
 ### Technologies Used
 
@@ -27,3 +29,5 @@ JavaScript, Node NPM packages Inquirer and MySQL, SQL
 ### Challenges 
 
 I initially struggled with understanding the relationship between the database and the JavaScript file that I was working off of. In this, I mean that I had to wrap my head around how the computer would differentiate between the MySQL alternations and calls, and strings. But it was evident that there was a direct relationship between the connection query and the modification of the database. Unlike working with APIs and then manipulating the JSON data, I would have to query the database multiple times if I needed to. 
+
+This was created during the UC Davis Extension coding bootcamp.

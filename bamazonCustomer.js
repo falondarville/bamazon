@@ -34,17 +34,18 @@ function start() {
 
         var itemId = parseInt(answer.productId);
 
-        if(itemId < 1 || itemId > 10){
-            console.log("That product ID does not exist.");
-            start();
-            return;
-        };
 
-        // gather the responses in variables
-        var quantity = answer.howMany;
-        console.log("You want to purchase an item with the product ID " + itemId + " in the quantity of " + quantity + ".");
+        connection.query("SELECT item_id FROM products WHERE item_id =" + itemId, function(error, response){
+            // check if itemId exists
+            if (response.length == 0) {
+                console.log("This item ID does not exist.");
+                return;
+            }
+                    // gather the responses in variables
+            var quantity = answer.howMany;
+            console.log("You want to purchase an item with the product ID " + itemId + " in the quantity of " + quantity + ".");
 
-        var query = "SELECT * FROM products WHERE item_id = " + itemId;
+            var query = "SELECT * FROM products WHERE item_id = " + itemId;
 
         connection.query(query, function(error, response){
             // check if there are enough items in stock
@@ -55,6 +56,7 @@ function start() {
             var stockQuantity = response[0].stock_quantity;
             var item = response[0].product_name;
             var price = response[0].price;
+            var totalSales = response[0].product_sales;
            
             // console.log(item);
 
@@ -68,6 +70,12 @@ function start() {
                     // console.log(error);
                     var total = (price * quantity).toFixed(2);
                     console.log("Great! You have purchased " + quantity + " " + item + ". The cost per unit of this item is " + price + ". Your total for this order of " + item + " is " + total + ".");
+
+                    var productSales = parseFloat(totalSales) + parseFloat(total);
+
+                    connection.query("UPDATE products SET product_sales = " + productSales + " WHERE item_id = " + itemId);
+
+                    connection.end();
                 });
                 // console.log("Stock quantity: " + stockQuantity);
                 // console.log("Quantity entered: " + quantity);
@@ -76,20 +84,12 @@ function start() {
                 
             } else {
                 console.log("There are insufficient amounts of the product to cover your order.");
+                connection.end();
             }
 
         });
-        afterConnection();
+        })
     });
 };
 
 start();
-
-// prints all items (for testing)
-function afterConnection() {
-    connection.query("SELECT * FROM products", function(error, response){
-        if (error) throw error;
-        // console.log(response);
-        connection.end();
-    });
-}

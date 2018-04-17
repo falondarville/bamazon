@@ -61,3 +61,20 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-04-15 22:24:58
+
+-- added column to products after creation and added values
+
+ALTER TABLE products ADD product_sales DECIMAL(30,2) DEFAULT 0;
+
+-- department table
+
+DROP TABLE IF EXISTS "departments";
+
+CREATE TABLE departments (
+	department_id int(30) not null AUTO_INCREMENT,
+	department_name varchar(30) DEFAULT NULL,
+	over_head_costs decimal(30,2) DEFAULT NULL,
+	primary key(department_id)
+);
+
+INSERT INTO departments(department_name, over_head_costs) VALUES ("Canned Goods", 3453), ("Pantry Essentials", 4322), ("Frozen Vegetables", 12200), ("Spices", 9000);
