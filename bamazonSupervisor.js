@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var Table = require("cli-table");
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -45,14 +46,17 @@ function start() {
 start();
 
 function sales() {
-    // the app should display a summarized table in their terminal/bash window.
-    // npm package to style the results of this function
     // need to add foreign key column to the products table so I can add the total purchases per department
 
     connection.query("SELECT * FROM departments", function(error, response){
 
     // product_sales = from the products table
     // total_profit = over_head_costs - product_sales
+
+        var table = new Table({
+            head: ['department_id', 'department_name', 'over_head_costs', 'product_sales', 'total_profit']
+          , colWidths: [4, 20, 10, 10, 12]
+            });
 
         response.forEach(function(response){
 
@@ -61,9 +65,15 @@ function sales() {
             var name = response.department_name;
             var costs = response.over_head_costs;
 
-            console.log("Department ID: " + id + "\n" + "Department name: " + name + "\n" + "Department overhead costs: "+ costs);
-            console.log("_________________________")
+            // console.log("Department ID: " + id + "\n" + "Department name: " + name + "\n" + "Department overhead costs: "+ costs);
+            // console.log("_________________________")
+
+            table.push(
+                [id, name, costs]
+            );
         });
+        console.log(table.toString());
+
     connection.end();
     })
 }

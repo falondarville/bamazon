@@ -68,9 +68,9 @@ ALTER TABLE products ADD product_sales DECIMAL(30,2) DEFAULT 0;
 
 -- add department ids to the product table
 
-ALTER TABLE products
-ADD department_id INT FOREIGN KEY
-REFERENCES departments(department_id);
+-- ALTER TABLE products
+-- ADD department_id INT FOREIGN KEY
+-- REFERENCES departments(department_id);
 
 -- department table
 
