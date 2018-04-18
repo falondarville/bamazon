@@ -66,11 +66,21 @@ UNLOCK TABLES;
 
 ALTER TABLE products ADD product_sales DECIMAL(30,2) DEFAULT 0;
 
--- add department ids to the product table
+-- add grocery ids to the product table
 
--- ALTER TABLE products
--- ADD department_id INT FOREIGN KEY
--- REFERENCES departments(department_id);
+ALTER TABLE products Add department_id integer;
+
+ALTER TABLE products Add FOREIGN KEY (department_id) REFERENCES departments(department_id);
+
+update products SET department_id = 1 where department_name = "Canned Goods";
+
+update products SET department_id = 2 where department_name = "Pantry Essentials";
+
+update products SET department_id = 3 where department_name = "Frozen Vegetables";
+
+update products SET department_id = 4 where department_name = "Spices";
+
+update products SET department_id = 5 where department_name = "Shelf-Stable Goods";
 
 -- department table
 

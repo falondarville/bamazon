@@ -39,37 +39,30 @@ function start() {
                 create();
                 break;
         }
-
-        });
+    });
 };
 
 start();
 
 function sales() {
-    // need to add foreign key column to the products table so I can add the total purchases per department
 
-    connection.query("SELECT * FROM departments", function(error, response){
-
-    // product_sales = from the products table
-    // total_profit = over_head_costs - product_sales
+    connection.query("select * from products JOIN departments on products.department_id = departments.department_id;", function(error, response){
 
         var table = new Table({
             head: ['department_id', 'department_name', 'over_head_costs', 'product_sales', 'total_profit']
-          , colWidths: [4, 20, 10, 10, 12]
+          , colWidths: [10, 20, 10, 10, 12]
             });
 
         response.forEach(function(response){
 
-            // console.log(response);
             var id = response.department_id;
             var name = response.department_name;
             var costs = response.over_head_costs;
-
-            // console.log("Department ID: " + id + "\n" + "Department name: " + name + "\n" + "Department overhead costs: "+ costs);
-            // console.log("_________________________")
+            var sales = response.product_sales;
+            var total = costs - sales;
 
             table.push(
-                [id, name, costs]
+                [id, name, costs, sales, total]
             );
         });
         console.log(table.toString());
