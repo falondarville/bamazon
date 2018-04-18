@@ -46,7 +46,9 @@ start();
 
 function sales() {
 
-    connection.query("select * from products JOIN departments on products.department_id = departments.department_id;", function(error, response){
+    connection.query("SELECT * FROM departments JOIN products ON departments.department_id = products.department_id", function(error, response){
+
+        // GROUP BY department_name
 
         var table = new Table({
             head: ['department_id', 'department_name', 'over_head_costs', 'product_sales', 'total_profit']
@@ -65,6 +67,7 @@ function sales() {
                 [id, name, costs, sales, total]
             );
         });
+
         console.log(table.toString());
 
     connection.end();

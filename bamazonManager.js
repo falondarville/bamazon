@@ -62,6 +62,7 @@ function sale() {
             var stock = response.stock_quantity;
             console.log(id + " " + name + " " + department + " " + price + " " + stock);
         })
+        start();
     })
 }
 
@@ -71,7 +72,15 @@ function inventory() {
 
         if(response.length == 0){
             console.log("No low stock.")
+        } else {
+            var id = response[0].item_id;
+            var name = response[0].product_name;
+            var department = response[0].department_name;
+            var price = response[0].price;
+            var stock = response[0].stock_quantity;
+            console.log(id + " " + name + " " + department + " " + price + " " + stock);
         }
+        start();
     })
 }
 

@@ -2,10 +2,6 @@
 
 This is a command line shop that communicates with a MySQL database. 
 
-The following is a snapshot of the small table from the database that I created:
-
-![alt-text](bamazon.png)
-
 ### Store Customer Usage
 
 The following is a view of the customer view of the application. Here, we see the customer choosing the ID of the item he or she would like to purchase. Next, he or she is prompted to provide the quantity of that item that they would like to purchase. Presented below are three outcomes:
@@ -29,6 +25,8 @@ The manager view has four capabilities, and the command is chosen from a menu. H
 3. Add to Inventory: With this option, the manager has the ability to add inventory to an existing item in the products table. He or she will be prompted to select the item that he or she wants to replenish and then type in the amount to be added. 
 
 4. Add New Product: This final option allows the manager to add a new product to the inventory. The manager is prompted to enter the name of the product, department to which it belongs, unit price, and number of units in stock.
+
+![alt-text](manager.gif)
 
 ### Store Supervisor Usage
 

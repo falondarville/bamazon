@@ -96,3 +96,7 @@ CREATE TABLE departments (
 INSERT INTO departments(department_name, over_head_costs) VALUES ("Canned Goods", 3453), ("Pantry Essentials", 4322), ("Frozen Vegetables", 12200), ("Spices", 9000);
 
 INSERT INTO departments(department_name, over_head_costs) VALUES ("Shelf-Stable Goods", 34889);
+
+-- JOINING TABLES
+
+SELECT *, over_head_costs - product_sales FROM products JOIN departments ON products.department_id = departments.department_id GROUP BY products.department_id;
