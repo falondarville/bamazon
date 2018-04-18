@@ -20,7 +20,23 @@ The following is a view of the customer view of the application. Here, we see th
 
 ### Store Manager Usage
 
+The manager view has four capabilities, and the command is chosen from a menu. He or she can perform the following:
 
+1. View Products for Sale: Here the manager will receive a list of all of the products available.
+
+2. View Low Inventory: Here the manager will retrieve a list of items with stock less than 5. When there are no items with low stock, the manager will also be notified.  
+
+3. Add to Inventory: With this option, the manager has the ability to add inventory to an existing item in the products table. He or she will be prompted to select the item that he or she wants to replenish and then type in the amount to be added. 
+
+4. Add New Product: This final option allows the manager to add a new product to the inventory. The manager is prompted to enter the name of the product, department to which it belongs, unit price, and number of units in stock.
+
+### Store Supervisor Usage
+
+The store supervisor has two capabilities, selected from the prompt menu that appears when entering this mode. 
+
+1. View Product Sales By Department: With this view, the supervisor sees an overview report containing the department id, department name, overhead costs, sales in each department, and difference between the overhead costs and department sales. 
+
+2. Create New Department: With this option, the supervisor can create a new department by entering the department name and overhead costs. 
 
 ### Technologies Used
 
