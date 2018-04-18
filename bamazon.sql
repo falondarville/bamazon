@@ -66,6 +66,12 @@ UNLOCK TABLES;
 
 ALTER TABLE products ADD product_sales DECIMAL(30,2) DEFAULT 0;
 
+-- add department ids to the product table
+
+ALTER TABLE products
+ADD department_id INT FOREIGN KEY
+REFERENCES departments(department_id);
+
 -- department table
 
 DROP TABLE IF EXISTS "departments";
@@ -78,3 +84,5 @@ CREATE TABLE departments (
 );
 
 INSERT INTO departments(department_name, over_head_costs) VALUES ("Canned Goods", 3453), ("Pantry Essentials", 4322), ("Frozen Vegetables", 12200), ("Spices", 9000);
+
+INSERT INTO departments(department_name, over_head_costs) VALUES ("Shelf-Stable Goods", 34889);
