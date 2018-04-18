@@ -47,6 +47,7 @@ start();
 function sales() {
     // the app should display a summarized table in their terminal/bash window.
     // npm package to style the results of this function
+    // need to add foreign key column to the products table so I can add the total purchases per department
 
     connection.query("SELECT * FROM departments", function(error, response){
 

@@ -45,11 +45,7 @@ function start() {
                 break;
         };
 
-        // console.log(menuOption);
-
         });
-    //     afterConnection();
-    // });
 };
 
 start();
@@ -159,14 +155,5 @@ function addProduct() {
 
             console.log("You've added " + quantity + " " + product + " with the cost of " + price + " per unit to your shop inventory.")
         })
-    });
-}
-
-// prints all items (for testing)
-function afterConnection() {
-    connection.query(function(error){
-        if (error) throw error;
-        // console.log(response);
-        connection.end();
     });
 }
