@@ -50,7 +50,7 @@ function sales() {
 
         var table = new Table({
             head: ['department_id', 'department_name', 'over_head_costs', 'product_sales', 'total_profit']
-          , colWidths: [10, 20, 10, 10, 12]
+          , colWidths: [14, 20, 14, 14, 14]
             });
 
         response.forEach(function(response){
@@ -93,7 +93,7 @@ function create() {
         connection.query("INSERT INTO departments(department_name, over_head_costs) VALUES ('" + department + "'," + costs + ")", function(error, response){
             if (error) throw error;
 
-            console.log("You've added the department named " + department + " to your records, with the overhead costs of" + costs);
+            console.log("You've added the department named " + department + " to your records, with the overhead costs of " + costs + ".");
         })
     connection.end();
     });
