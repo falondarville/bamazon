@@ -46,9 +46,7 @@ start();
 
 function sales() {
 
-    connection.query("SELECT * FROM departments JOIN products ON departments.department_id = products.department_id", function(error, response){
-
-        // GROUP BY department_name
+    connection.query("SELECT departments.*, SUM(products.product_sales) AS total_product_sales, (SUM(products.product_sales) - over_head_costs) AS total_profit FROM `departments` JOIN products ON departments.department_id=products.department_id GROUP BY departments.department_id", function(error, response){
 
         var table = new Table({
             head: ['department_id', 'department_name', 'over_head_costs', 'product_sales', 'total_profit']
@@ -60,8 +58,8 @@ function sales() {
             var id = response.department_id;
             var name = response.department_name;
             var costs = response.over_head_costs;
-            var sales = response.product_sales;
-            var total = costs - sales;
+            var sales = response.total_product_sales;
+            var total = response.total_profit;
 
             table.push(
                 [id, name, costs, sales, total]
