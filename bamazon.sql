@@ -62,6 +62,21 @@ UNLOCK TABLES;
 
 -- Dump completed on 2018-04-15 22:24:58
 
+-- department table
+
+DROP TABLE IF EXISTS "departments";
+
+CREATE TABLE departments (
+	department_id int(30) not null AUTO_INCREMENT,
+	department_name varchar(30) DEFAULT NULL,
+	over_head_costs decimal(30,2) DEFAULT NULL,
+	primary key(department_id)
+);
+
+INSERT INTO departments(department_name, over_head_costs) VALUES ("Canned Goods", 3453), ("Pantry Essentials", 4322), ("Frozen Vegetables", 12200), ("Spices", 9000);
+
+INSERT INTO departments(department_name, over_head_costs) VALUES ("Shelf-Stable Goods", 34889);
+
 -- added column to products after creation and added values
 
 ALTER TABLE products ADD product_sales DECIMAL(30,2) DEFAULT 0;
@@ -81,22 +96,3 @@ update products SET department_id = 3 where department_name = "Frozen Vegetables
 update products SET department_id = 4 where department_name = "Spices";
 
 update products SET department_id = 5 where department_name = "Shelf-Stable Goods";
-
--- department table
-
-DROP TABLE IF EXISTS "departments";
-
-CREATE TABLE departments (
-	department_id int(30) not null AUTO_INCREMENT,
-	department_name varchar(30) DEFAULT NULL,
-	over_head_costs decimal(30,2) DEFAULT NULL,
-	primary key(department_id)
-);
-
-INSERT INTO departments(department_name, over_head_costs) VALUES ("Canned Goods", 3453), ("Pantry Essentials", 4322), ("Frozen Vegetables", 12200), ("Spices", 9000);
-
-INSERT INTO departments(department_name, over_head_costs) VALUES ("Shelf-Stable Goods", 34889);
-
--- JOINING TABLES
-
-SELECT *, over_head_costs - product_sales FROM products JOIN departments ON products.department_id = departments.department_id GROUP BY products.department_id;

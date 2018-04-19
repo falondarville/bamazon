@@ -1,6 +1,6 @@
 ## Command line shop
 
-This is a command line shop that communicates with a MySQL database. 
+This is a command line shop with three views that communicates with a MySQL database. There are three files that allow three different shop access levels. These are customer, manager, and supervisor. 
 
 ### Store Customer Usage
 
