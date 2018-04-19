@@ -42,8 +42,10 @@ The store supervisor has two capabilities, selected from the prompt menu that ap
 
 JavaScript, Node NPM packages Inquirer and MySQL, SQL
 
-### Challenges 
+### Challenges and Learning Recap
 
-I initially struggled with understanding the relationship between the database and the JavaScript file that I was working off of. In this, I mean that I had to wrap my head around how the computer would differentiate between the MySQL alternations and calls, and strings. But it was evident that there was a direct relationship between the connection query and the modification of the database. Unlike working with APIs and then manipulating the JSON data, I would have to query the database multiple times if I needed to. 
+I initially struggled with understanding the relationship between the database and the JavaScript file that I was working off of. In this, I mean that I had to wrap my head around how the computer would differentiate between the MySQL alternations and calls, and strings. But it was evident that there was a direct relationship between the connection query and the modification of the database. Unlike working with APIs and then manipulating the JSON data once, I would have to query the database multiple times if I needed to. 
+
+For this assignment, I deep dove into SQL using a Udemy course, where I learned about aggregate functions, data types and their use cases, date and time calculations and conversions, logical operators (which I was a decently familiar with from working with JavaScript), and relationships (one to many, many to many). I thoroughly enjoy working with SQL and look forward to learning more about relational databases.
 
 This was created during the UC Davis Extension coding bootcamp.
