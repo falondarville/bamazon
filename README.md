@@ -36,6 +36,8 @@ The store supervisor has two capabilities, selected from the prompt menu that ap
 
 2. Create New Department: With this option, the supervisor can create a new department by entering the department name and overhead costs. 
 
+![alt-text](supervisor.gif)
+
 ### Technologies Used
 
 JavaScript, Node NPM packages Inquirer and MySQL, SQL
