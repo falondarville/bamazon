@@ -1,6 +1,6 @@
 ## Command line shop
 
-This is a command line shop with three views that communicates with a MySQL database. There are three files that allow three different shop access levels. These are customer, manager, and supervisor. 
+This is a command line shop with three views that communicates with a MySQL database. There are three files that allow three different shop access levels. These are customer, manager, and supervisor. See 
 
 ### Store Customer Usage
 
@@ -35,8 +35,6 @@ The store supervisor has two capabilities, selected from the prompt menu that ap
 1. View Product Sales By Department: With this view, the supervisor sees an overview report containing the department id, department name, overhead costs, sales in each department, and difference between the overhead costs and department sales. 
 
 2. Create New Department: With this option, the supervisor can create a new department by entering the department name and overhead costs. 
-
-![alt-text](supervisor.gif)
 
 ### Technologies Used
 
