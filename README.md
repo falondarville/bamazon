@@ -40,7 +40,7 @@ The store supervisor has two capabilities, selected from the prompt menu that ap
 
 ### Technologies Used
 
-JavaScript, Node NPM packages Inquirer and MySQL, SQL
+JavaScript, SQL, Node NPM packages: Inquirer, CLI-table, and MySQL
 
 ### Challenges and Learning Recap
 
